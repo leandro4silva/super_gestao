@@ -1,10 +1,9 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +17,6 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', [MainController::class, 'index']);
+Route::get('/about', [AboutController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);
+
