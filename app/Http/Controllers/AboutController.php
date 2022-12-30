@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class AboutController extends Controller
 {
     public function index(){
-        return view('site.about');
+        $this->data['title'] = 'Sobre';
+        return view('site.about', $this->data);
     }
 }

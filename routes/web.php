@@ -8,10 +8,10 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'index'])->name('site.mainIndex');
-
 Route::get('/about', [AboutController::class, 'index'])->name('site.aboutIndex');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('site.contactIndex');
+Route::post('/contact', [ContactController::class, 'create'])->name('site.contactCreate');
 
 Route::get('/login', function () {
     return 'login'; 
