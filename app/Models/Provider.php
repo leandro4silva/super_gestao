@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
-    protected $fillable = ['name', 'site', 'uf', 'email'];
+    protected $fillable = [
+        'name', 
+        'site', 
+        'uf', 
+        'email'
+    ];
 
 }
