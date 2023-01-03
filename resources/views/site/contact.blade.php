@@ -11,7 +11,7 @@
 
         <div class="informacao-pagina">
             <div class="contato-principal">
-                @component('site.common._components.form_contact', ['class' => 'borda-preta'])   
+                @component('site.common._components.form_contact', ['class' => 'borda-preta', 'type_contacts' => $type_contact])   
                     <p>A nossa equipe analisará a sua mensagem e retornaremos o mais brevemente possivel!</p>
                     <p>Nosso tempo médio de resposta é de 48 horas.</p>
                 @endcomponent
