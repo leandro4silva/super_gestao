@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TypeContact;
 
 class MainController extends Controller
 {   
@@ -10,11 +11,7 @@ class MainController extends Controller
     {
         $this->data['title'] = 'Home';
 
-        $this->data['type_contact'] = [
-            '1' => 'Duvida',
-            '2' => 'Elogio',
-            '3' => 'Reclamação'
-        ];
+        $this->data['type_contact'] = TypeContact::all(); 
 
         return view('site.main', $this->data);
     }

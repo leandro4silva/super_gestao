@@ -12,8 +12,8 @@
     <br>
     <select class="{{$class}}" name="type_contact" value="{{old('type_contact')}}">
         <option value="" selected disabled>Qual o motivo do contato?</option>
-        @foreach ($type_contacts as $key => $type_contact )
-            <option value="{{$key}}" {{ old('type_contact') == $key ? 'selected' : null}}>{{$type_contact}}</option>
+        @foreach ($type_contacts as $key => $item )
+            <option value="{{$key}}" {{ old('type_contact') == $key ? 'selected' : null}}>{{$item->type_contact}}</option>
         @endforeach
     </select>
     {{ $errors->first('type_contact') }}

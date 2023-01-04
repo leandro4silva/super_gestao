@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Models\TypeContact;
 
 class ContactController extends Controller
 {
     public function index(){
         $this->data['title'] = 'Contato';
-        $this->data['type_contact'] = [
-            '1' => 'Duvida',
-            '2' => 'Elogio',
-            '3' => 'Reclamação'
-        ];
-
+        $this->data['type_contact'] = TypeContact::all();
 
         return view('site.contact', $this->data);
     }
