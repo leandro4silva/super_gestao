@@ -1,13 +1,15 @@
 <?php
-use App\Http\Controllers\ProvidersController;
-use App\Http\Controllers\TesteController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProvidersController;
+use App\Http\Controllers\TesteController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 
-Route::get('/', [MainController::class, 'index'])->name('site.mainIndex');
+use App\Http\Middleware\LogAccessMiddleware;
+
+Route::middleware(LogAccessMiddleware::class)->get('/', [MainController::class, 'index'])->name('site.mainIndex');
 Route::get('/about', [AboutController::class, 'index'])->name('site.aboutIndex');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('site.contactIndex');

@@ -11,7 +11,7 @@ class MainController extends Controller
     {
         $this->data['title'] = 'Home';
 
-        $this->data['type_contact'] = TypeContact::all(); 
+        $this->data['type_contact_id'] = TypeContact::all(); 
 
         return view('site.main', $this->data);
     }

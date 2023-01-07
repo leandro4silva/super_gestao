@@ -10,7 +10,8 @@ class ContactController extends Controller
 {
     public function index(){
         $this->data['title'] = 'Contato';
-        $this->data['type_contact'] = TypeContact::all();
+
+        $this->data['type_contact_id'] = TypeContact::all();
 
         return view('site.contact', $this->data);
     }
@@ -18,25 +19,28 @@ class ContactController extends Controller
     public function create(Request $request){
         
         $request->validate([
-            'name' => 'required|min:3|max:40',
-            'phone' => 'required',
-            'type_contact' => 'required',
-            'email' => 'required',
-            'message' => 'required|max:2000'
-        ]);
+                'name' => 'required|min:3|max:40',
+                'phone' => 'required',
+                'type_contact_id' => 'required',
+                'email' => 'email|required|unique:contacts',
+                'message' => 'required|max:200'
+            ],
+            [
+                'name.required' => 'O campo nome precisa ser preenchido',
+                'name.min' => 'O campo precisa ter no minimo 3 caracteres',
+                'name.max' => 'O campo pode ter no maximo 40 caracteres',
+                'phone.required' => 'O campo telefone precisa ser preenchido',
+                'type_contact_id.required' => 'O campo motivo do contato precisa ser preenchido',
+                'email.email' => 'O campo deve conter um email valido',
+                'email.required' => 'O campo email precisa ser preenchido',
+                'email.unique' => 'Este email já foi cadastrado',
+                'message.required' => 'O campo menssagem precisa ser preenchido',
+                'message.max' => 'O campo pode ter no maximo 200 caracteres'
+            ]
+        );
         
-        // $this->data['title'] = 'Contato';
-        
-        // $contact = new Contact();
-        // $contact->name = $request->input('name');
-        // $contact->phone = $request->input('phone');
-        // $contact->email = $request->input('email');
-        // $contact->type_contact = $request->input('type_contact');
-        // $contact->message = $request->input('message');
-        // $contact->save();
-
-        // Contact::create($request->all());
+        Contact::create($request->all());
     
-        // return view('site.contact', $this->data);
+        return redirect()->route('site.mainIndex');
     }
 }

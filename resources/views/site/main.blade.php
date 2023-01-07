@@ -29,7 +29,7 @@
                 <h1>Contato</h1>
                 <p>Caso tenha qualquer dúvida por favor entre em contato com nossa equipe pelo formulário abaixo.
                 <p>
-                @component('site.common._components.form_contact', ['class' => 'borda-branca', 'type_contacts' => $type_contact])   
+                @component('site.common._components.form_contact', ['class' => 'borda-branca', 'type_contact_id' => $type_contact_id])   
                 @endcomponent
             </div>
         </div>
