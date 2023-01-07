@@ -12,7 +12,7 @@ use App\Http\Middleware\LogAccessMiddleware;
 Route::middleware(LogAccessMiddleware::class)->get('/', [MainController::class, 'index'])->name('site.mainIndex');
 Route::get('/about', [AboutController::class, 'index'])->name('site.aboutIndex');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('site.contactIndex');
+Route::get('/contact', [ContactController::class, 'index'])->name('site.contactIndex')->middleware(LogAccessMiddleware::class);
 Route::post('/contact', [ContactController::class, 'create'])->name('site.contactCreate');
 
 Route::get('/login', function () {
