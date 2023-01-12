@@ -1,31 +1,28 @@
 <?php
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ProvidersController;
 use App\Http\Controllers\TesteController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 
-use App\Http\Middleware\LogAccessMiddleware;
 
-Route::middleware(LogAccessMiddleware::class)->get('/', [MainController::class, 'index'])->name('site.mainIndex');
+Route::get('/', [MainController::class, 'index'])->name('site.mainIndex');
 Route::get('/about', [AboutController::class, 'index'])->name('site.aboutIndex');
 
-Route::get('/contact', [ContactController::class, 'index'])->name('site.contactIndex')->middleware(LogAccessMiddleware::class);
+Route::get('/contact', [ContactController::class, 'index'])->name('site.contactIndex');
 Route::post('/contact', [ContactController::class, 'create'])->name('site.contactCreate');
 
 Route::get('/login', function () {
     return 'login'; 
 });
 
-Route::prefix('/app')->group(function () {
+Route::middleware('autentication:default')->prefix('/app')->group(function () {
     Route::get('/customer', function () {
         return 'clientes';
     });
-    
     Route::get('/providers', [ProvidersController::class, 'index'])->name('app.providersIndex');
-    
     Route::get('/products', function () {
         return 'produtos'; 
     });

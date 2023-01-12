@@ -26,6 +26,10 @@ class LogAccessMiddleware
             'log' => "IP $ip requisitou a rota $route pelo navegador $browser"
         ]);
 
-        return Response('Chegamos no middleware e finalizamos no proprio');
+        $response = $next($request);
+
+        $response->setStatusCode(201, 'O status da resposta e o mensagem da resposta foram modificados');
+
+        return $response;
     }
 }
