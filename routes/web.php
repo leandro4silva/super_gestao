@@ -6,7 +6,7 @@ use App\Http\Controllers\TesteController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
-
+use App\Http\Controllers\LoginController;
 
 Route::get('/', [MainController::class, 'index'])->name('site.mainIndex');
 Route::get('/about', [AboutController::class, 'index'])->name('site.aboutIndex');
@@ -14,9 +14,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('site.aboutIndex')
 Route::get('/contact', [ContactController::class, 'index'])->name('site.contactIndex');
 Route::post('/contact', [ContactController::class, 'create'])->name('site.contactCreate');
 
-Route::get('/login', function () {
-    return 'login'; 
-});
+Route::get('/login', [LoginController::class, 'index'])->name('site.loginIndex');
+Route::post('/login', [LoginController::class, 'create'])->name('site.loginCreate');
 
 Route::middleware('autentication:default')->prefix('/app')->group(function () {
     Route::get('/customer', function () {
